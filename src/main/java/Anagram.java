@@ -1,26 +1,15 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.StringTokenizer;
 /**
- * This is my first task on FoxMinded course.
+ * This class generates anagrams
  *
- * @version 1.0 15 Sep 2020
+ * @version 1.0 19 Sep 2020
  * @author ILyas Berdibekov
  */
-public class AnagramsUtil {
-
-    public static void main(String[] args) {
-        System.out.println("This is my first task on FoxMinded course");
-        Scanner in = new Scanner(System.in);
-        System.out.print("Input text: ");
-        String inputText = in.nextLine();
-
-        System.out.println(makeAnagrams(inputText));
-    }
-
-    /**
-     * Scans input string and parses it into words.
-     * @return  parsed text.
-     */
-    static String makeAnagrams(String textToReverse){
+public class Anagram {
+    String makeAnagrams(String textToReverse){
         StringTokenizer wordTokenizer = new StringTokenizer(textToReverse);
         StringBuffer anagramsBuf = new StringBuffer();
 
@@ -32,12 +21,9 @@ public class AnagramsUtil {
         return anagramsBuf.toString();
     }
 
-    /**
-     * Returns reversed word
-     */
-    private static String reverseWord(String word) {
+    private String reverseWord(String word) {
 
-        List<Character> originalSequenceList;              /*In this List numbers will be on their places*/
+        List<Character> originalSequenceList;       /*In this list numbers will be on their places*/
         LinkedList<Character> onlyLetters;          /*this list will be reversed*/
 
         originalSequenceList= new ArrayList<Character>();
@@ -53,11 +39,10 @@ public class AnagramsUtil {
             }
         }
         return BuildOnlyLettersReversedSequence(originalSequenceList,onlyLetters);
-
     }
 
-    private static String BuildOnlyLettersReversedSequence(List<Character> originalSequenceList,
-                                         LinkedList<Character> onlyLetters) {
+    private String BuildOnlyLettersReversedSequence(List<Character> originalSequenceList,
+                                                           LinkedList<Character> onlyLetters) {
         List<Character> characterList = new ArrayList<Character>();
         characterList.addAll(originalSequenceList);
         char c;
@@ -71,9 +56,7 @@ public class AnagramsUtil {
         return reversedWord;
     }
 
-
-
-    private static String getStringRepresentation(List<Character> characterList) {
+    private String getStringRepresentation(List<Character> characterList) {
         StringBuilder stringBuilder = new StringBuilder(characterList.size());
         for (Character ch:characterList) {
             stringBuilder.append(ch);
@@ -84,5 +67,4 @@ public class AnagramsUtil {
     private static boolean isNotDigit(char symbol) {
         return !Character.isDigit(symbol);
     }
-
 }
